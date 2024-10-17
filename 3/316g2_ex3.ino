@@ -11,7 +11,7 @@ void setup() {
 void loop() {
     v = digitalRead(8);
     if (v == HIGH) {
-        while (v) {
+        while (v == HIGH) {
             v = digitalRead(8);
             delay(10);
         }
