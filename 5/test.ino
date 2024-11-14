@@ -1,5 +1,8 @@
+#include <Servo.h>
+
 #include <vector>
 
+Servo myservo;
 int state = 0;  // 0: lock, 1: unlock, 2: setPassword
 int time = 0;   // Waiting time
 int MaxWaitingTime = 1000;
@@ -12,7 +15,7 @@ void setup() {
     for (int i = 0; i < 11; i++) {
         pinMode(button[i], INPUT);
     }
-    pinMode(motor, OUTPUT);
+    myservo.attach(motor);
 }
 
 void loop() {
@@ -39,6 +42,8 @@ void loop() {
         input.clear();
     }
     if (state == 1) {
-        // Motor running
+        myservo.write(0);
+    } else if (state == 0) {
+        myservo.write(90);
     }
 }
